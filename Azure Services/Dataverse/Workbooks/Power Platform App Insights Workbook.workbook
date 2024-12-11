@@ -1,0 +1,475 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# Power Platform Application Insights Workbook\r\n## This workbook contains a collection of metrics, queries and guidance.\r\n\r\n## Access Control for Azure Workbooks\r\n\r\nUsers must have the appropriate permissions to view or edit a workbook. Workbook permissions are based on the permissions the user has for the resources included in the workbooks.\r\n[Read about access control.](https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview#access-control)\r\n\r\n## Power Platform App Insights Events \r\n[Read about Model Drive App events.](https://learn.microsoft.com/en-us/power-platform/admin/telemetry-events-model-driven-apps)\r\n\r\n[Read about Dataverse telemtry events.](https://learn.microsoft.com/en-us/power-platform/admin/telemetry-events-dataverse)\r\n\r\n## Azure Monitor Community on GitHub\r\nThis public repo serves the Azure Monitor community. It contains log queries, workbooks, and alerts, shared to help Azure Monitor users make the most of it.\r\n[Check out the repo!](https://github.com/microsoft/AzureMonitorCommunity)\r\n\r\n\r\n\r\n### Parameters\r\nUse the Time range paramters below to set the time range to query on.",
+        "style": "info"
+      },
+      "name": "text - 2"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "label": "Time range",
+            "type": 4,
+            "isRequired": true,
+            "value": {
+              "durationMs": 86400000
+            },
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000
+                },
+                {
+                  "durationMs": 900000
+                },
+                {
+                  "durationMs": 1800000
+                },
+                {
+                  "durationMs": 3600000
+                },
+                {
+                  "durationMs": 14400000
+                },
+                {
+                  "durationMs": 43200000
+                },
+                {
+                  "durationMs": 86400000
+                },
+                {
+                  "durationMs": 172800000
+                },
+                {
+                  "durationMs": 259200000
+                },
+                {
+                  "durationMs": 604800000
+                },
+                {
+                  "durationMs": 1209600000
+                },
+                {
+                  "durationMs": 2419200000
+                },
+                {
+                  "durationMs": 2592000000
+                },
+                {
+                  "durationMs": 5184000000
+                },
+                {
+                  "durationMs": 7776000000
+                }
+              ],
+              "allowCustom": true
+            },
+            "id": "f29c1746-714c-4d2b-b8ee-0a23c5cc411c"
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Availability\r\n\r\n> Availability tests don't require any modifications to the website or application you're testing. > They work for any HTTP or HTTPS endpoint accessible from the public internet, including REST APIs > that your service depends on. This means you can monitor not only your own applications but also > external services that are critical to your application's functionality. You can create up to 100 > availability tests per Application Insights resource.\r\n> [Read more](https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability?tabs=standard)\r\n\r\n*An availability test can be executed from different regions, below are the regions available in Azure Government.*\r\n\r\n| Display Name | Population Name | \r\n|-----------|:-----------:|\r\n| USGov Virginia | usgov-va-azr |\r\n| USGov Arizona | usgov-phx-azr |\r\n| USGov Texas | usgov-tx-azr |\r\n| USDoD East | usgov-ddeast-azr |\r\n| USDoD Central | usgov-ddcentral-azr |\r\n\r\n\r\nIf the tiles below show **\"Not setup\"**, then there are no availablity tests setup for the instance. \r\n[Create an availability test](https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability?tabs=standard#create-an-availability-test)\r\n\r\n## Performance / Throlling / Failures\r\n\r\n\r\n",
+        "style": "upsell"
+      },
+      "name": "text - 5"
+    },
+    {
+      "type": 10,
+      "content": {
+        "chartId": "workbook8b01085c-84cc-44de-9998-3372122411bc",
+        "version": "MetricsItem/2.0",
+        "size": 1,
+        "chartType": -1,
+        "resourceType": "microsoft.insights/components",
+        "metricScope": 0,
+        "resourceIds": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-SOUTHWEST-EIS-RG/providers/microsoft.insights/components/va-eis-tmp-appinsights-nprod"
+        ],
+        "timeContextFromParameter": "TimeRange",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "metrics": [
+          {
+            "namespace": "microsoft.insights/components/kusto",
+            "metric": "microsoft.insights/components/kusto-Availability-availabilityResults/availabilityPercentage",
+            "aggregation": 4,
+            "columnName": "Availability"
+          }
+        ],
+        "title": "PROD AVAILABILITY",
+        "gridFormatType": 1,
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "Name",
+            "formatter": 13,
+            "formatOptions": {
+              "linkTarget": "AvailabilityDetails",
+              "linkIsContextBlade": true,
+              "showIcon": true,
+              "appInsightsContext": {
+                "resourceIdSource": "default",
+                "secondaryIdSource": "default"
+              }
+            }
+          },
+          "leftContent": {
+            "columnMatch": "Value",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "minimumIntegerDigits": 1,
+                "maximumFractionDigits": 2,
+                "maximumSignificantDigits": 3
+              },
+              "emptyValCustomText": "Not setup"
+            }
+          },
+          "showBorder": false,
+          "size": "auto"
+        },
+        "gridSettings": {
+          "rowLimit": 10000
+        }
+      },
+      "name": "ALL PROD AVAILABILITY"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "\r\n### Page Load\r\n\r\n### Dependency Duration\r\n\r\n### Unique Users\r\n\r\n### Throlling (429)\r\n\r\n### Potential Throttling\r\n\r\n### Total Exceptions By Type\r\n\r\n\r\n\r\n",
+        "style": "info"
+      },
+      "name": "text - 6"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 10,
+            "content": {
+              "chartId": "5ff144b2-96d5-492b-a341-8036f8a7116f",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 2,
+              "resourceType": "microsoft.insights/components",
+              "metricScope": 0,
+              "resourceIds": [
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-veis-health-check-prod-east",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourcegroups/eis-prod-int-east-udo-rg/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 86400000
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.insights/components/kusto",
+                  "metric": "microsoft.insights/components/kusto-Usage-pageViews/duration",
+                  "aggregation": 4
+                }
+              ],
+              "title": "Page Load",
+              "gridSettings": {
+                "rowLimit": 10000
+              }
+            },
+            "customWidth": "33",
+            "name": "Page Load",
+            "styleSettings": {
+              "maxWidth": "33"
+            }
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbookdc27d397-d352-4b52-8290-fe892212bd50",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 2,
+              "resourceType": "microsoft.insights/components",
+              "metricScope": 0,
+              "resourceIds": [
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-veis-health-check-prod-east",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 86400000
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.insights/components/kusto",
+                  "metric": "microsoft.insights/components/kusto-Server-dependencies/duration",
+                  "aggregation": 4,
+                  "columnName": "Dependency Duration"
+                }
+              ],
+              "title": "Dependency Duration",
+              "gridSettings": {
+                "rowLimit": 10000
+              }
+            },
+            "customWidth": "33",
+            "name": "Dependency Duration",
+            "styleSettings": {
+              "maxWidth": "33"
+            }
+          },
+          {
+            "type": 10,
+            "content": {
+              "chartId": "workbook671ccc83-a47f-4525-b7d1-6fb43434d705",
+              "version": "MetricsItem/2.0",
+              "size": 0,
+              "chartType": 2,
+              "resourceType": "microsoft.insights/components",
+              "metricScope": 0,
+              "resourceIds": [
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+              ],
+              "timeContextFromParameter": "TimeRange",
+              "timeContext": {
+                "durationMs": 86400000
+              },
+              "metrics": [
+                {
+                  "namespace": "microsoft.insights/components/kusto",
+                  "metric": "microsoft.insights/components/kusto-Usage-users/count",
+                  "aggregation": 5,
+                  "columnName": "Unique Users"
+                },
+                {
+                  "namespace": "microsoft.insights/components/kusto",
+                  "metric": "microsoft.insights/components/kusto-Usage-users/authenticated",
+                  "aggregation": 5,
+                  "columnName": "Authenticate Unique Users"
+                }
+              ],
+              "title": "Unique Users",
+              "gridSettings": {
+                "rowLimit": 10000
+              }
+            },
+            "customWidth": "33",
+            "name": "Unique Users",
+            "styleSettings": {
+              "maxWidth": "33"
+            }
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": " requests\r\n | where resultCode == 429\r\n | summarize count() by appName\r\n ",
+              "size": 0,
+              "title": "Throttling (429)",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.insights/components",
+              "crossComponentResources": [
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+              ],
+              "visualization": "barchart"
+            },
+            "customWidth": "33",
+            "name": "Throttling (429)",
+            "styleSettings": {
+              "maxWidth": "33"
+            }
+          }
+        ]
+      },
+      "name": "group - 3"
+    },
+    {
+      "type": 12,
+      "content": {
+        "version": "NotebookGroup/1.0",
+        "groupType": "editable",
+        "items": [
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "//Look for exceptions that may indicate throttling\r\nexceptions\r\n| take 100\r\n| where\r\n    outerMessage has \"-2147220989\"\r\n    or outerMessage has \"-2147015902\"\r\n    or outerMessage has \"-2147015903\"",
+              "size": 0,
+              "title": "Potential Throttling",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.insights/components",
+              "crossComponentResources": [
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-veis-health-check-prod-east",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-veis-health-check-prod-sw"
+              ]
+            },
+            "customWidth": "33",
+            "name": "Potential Throttling",
+            "styleSettings": {
+              "maxWidth": "33"
+            }
+          },
+          {
+            "type": 3,
+            "content": {
+              "version": "KqlItem/1.0",
+              "query": "exceptions\r\n| summarize totalExceptions = count() by problemId\r\n| sort by totalExceptions desc  \r\n",
+              "size": 0,
+              "title": "Total Exceptions By Type",
+              "timeContextFromParameter": "TimeRange",
+              "queryType": 0,
+              "resourceType": "microsoft.insights/components",
+              "crossComponentResources": [
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-veis-health-check-prod-sw",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-veis-health-check-prod-east",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi",
+                "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-east-appi"
+              ],
+              "visualization": "table",
+              "gridSettings": {
+                "formatters": [
+                  {
+                    "columnMatch": "problemId",
+                    "formatter": 0,
+                    "formatOptions": {
+                      "customColumnWidthSetting": "45ch"
+                    }
+                  },
+                  {
+                    "columnMatch": "totalExceptions",
+                    "formatter": 0,
+                    "formatOptions": {
+                      "customColumnWidthSetting": "10ch"
+                    }
+                  }
+                ]
+              }
+            },
+            "customWidth": "33",
+            "name": "Total Exceptions By Type",
+            "styleSettings": {
+              "maxWidth": "33"
+            }
+          }
+        ]
+      },
+      "name": "group - 5"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "styleSettings": {
+    "paddingStyle": "narrow",
+    "spacingStyle": "narrow"
+  },
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
