@@ -1,0 +1,188 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# Link Power Platform to App Insights\r\n\r\n - Show number of Dataverse Environments linked with App Insights (ResourceId name contains \"appi\" and URl contains \"dvagov-\")\r\n - Show DV URL and App Insights Name of Dataverse Environments linked with App Insights (ResourceId name contains \"appi\" and URl contains \"dvagov-\")\r\n - Show Power Apps App name on each Resource from pageViews.customDimensions.appModule\r\n\t-- Highlight any that are showed to be linked but do NOT have any apps present in pageViews\r\n - Show Power Apps DV URL that have a Model Drive App Form List view or Canvas Screen View or Power Pages view\r\n\t-- Highlight any that are showed to be linked but do NOT have any apps present in pageViews"
+      },
+      "name": "text - 0"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "// Author: lourainaldi\r\n// Display name: Power Platform Admin Center Analytics - Dataverse Environments with App Insight\r\n// Description: Select all of the App Insights instances and return the _ResourceId and URL host and domain for each that begins with dvagov-\r\n// Categories: Power Platform Admin Center Analytics\r\n// Resource types: Dataverse\r\n// Topic: App Insights\r\nrequests\r\n| where url != \"\"\r\n| where url contains \"dvagov-\"\r\n| distinct _ResourceId,substring(url,0,indexof(url,\".com/\")+4)\r\n| summarize count()\r\n",
+        "size": 4,
+        "title": "Count of dvagov with App Insights",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-NONVRM-RG/providers/microsoft.insights/components/va-veis-devtest-btsss-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-veis-devtest-tmp-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-d365-monitoring-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-devtest-southwest-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-udo-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-devtest-ec-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-devtest-southwest-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-dev",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-veis-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-veis-eis-commcare-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-SOUTHWEST-EIS-RG/providers/microsoft.insights/components/va-eis-tmp-appinsights-nprod",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-ppd",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-preprod-southwest-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-preprod-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi"
+        ]
+      },
+      "customWidth": "25",
+      "name": "Count of dvagov with App Insights",
+      "styleSettings": {
+        "maxWidth": "25"
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "// Author: lourainaldi\r\n// Display name: Power Platform Admin Center Analytics - Dataverse Environments with App Insight\r\n// Description: Select all of the App Insights instances and return the _ResourceId and URL host and domain for each that begins with dvagov-\r\n// Categories: Power Platform Admin Center Analytics\r\n// Resource types: Dataverse\r\n// Topic: App Insights\r\nrequests\r\n| where url != \"\"\r\n| where url contains \"dvagov-\"\r\n| distinct _ResourceId,substring(url,0,indexof(url,\".com/\")+4)\r\n| sort by _ResourceId",
+        "size": 0,
+        "showAnalytics": true,
+        "title": "Dataverse URL with App Insights Resource Id",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "showRefreshButton": true,
+        "showExportToExcel": true,
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-prod-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-prod",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-TMP-RG/providers/microsoft.insights/components/va-eis-tmp-prod-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-preprod-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-preprod-southwest-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-ppd",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-SOUTHWEST-EIS-RG/providers/microsoft.insights/components/va-eis-tmp-appinsights-nprod",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PREPROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-ppd-east-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-WISE-RG/providers/microsoft.insights/components/va-eis-wise-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VOICE-RG/providers/microsoft.insights/components/va-eis-voice-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-veis-eis-commcare-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-veis-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-vethome-appi-dev",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-devtest-southwest-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-veis-devtest-ec-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-udo-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-devtest-southwest-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-d365-monitoring-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-veis-devtest-tmp-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-NONVRM-RG/providers/microsoft.insights/components/va-veis-devtest-btsss-sw-appi"
+        ],
+        "gridSettings": {
+          "rowLimit": 500,
+          "filter": true
+        }
+      },
+      "showPin": true,
+      "name": "Dataverse URL with App Insights Resource Id"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "// Show App Insights Resource Id and Power Platform App Name\r\npageViews\r\n| project _ResourceId,customDimensions.appModule\r\n",
+        "size": 0,
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-EIS-RG/providers/microsoft.insights/components/mitch-helloworld",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-NONVRM-RG/providers/microsoft.insights/components/va-veis-devtest-btsss-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-TMP-RG/providers/microsoft.insights/components/va-veis-devtest-tmp-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-ava-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-cdcep-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-commcare-dev-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-msp-devtest-sw-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-patsr-devtest-southwest-appi",
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-DEVTEST-INT-SOUTHWEST-VEIS-RG/providers/microsoft.insights/components/va-eis-udo-devtest-sw-appi"
+        ]
+      },
+      "name": "query - 3"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "// enumerate through all of the app insights instances and show PASS if there is a MDA PageView and FAIL if there is NOT\r\npageViews\r\n| where name == \"ModalDialog Load\"\r\n",
+        "size": 0,
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+        ]
+      },
+      "name": "query - 4"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
