@@ -1,0 +1,125 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "#  Alerting for VA UDO\r\n\r\nThis workbook contains queries that can be used to configure alerts, the queries below will show results that can be fine tuned to determine when an alert should be triggered based on the historical data presented.\r\n\r\n- **Page Load**\r\n\tMonitor the duration of the page load, we can also make use of the performance buckets whick provide a way of grouping. Page load queries below will show the duration and performance buckets of the longest running loads over a 30 day time span. Based on this information a **duration metric** can be established to trigger alerts and/or warnings.\r\n- **Dependency Load**\r\n\tMonitor the duration of the dependcy load, we can also make use of the performance buckets whick provide a way of grouping. Dependcy load queries below will show the duration and performance buckets of the longest running loads over a 30 day time span. Based on this information a **duration metric** can be established to trigger alerts and/or warnings.\r\n- **Exceptions**\r\n\tMonitor any exceptions that are thrown, exceptions should be address to understand why they are being thrown and what actions can be taken to mitigate the exception.\r\n- **Throttling**\r\n\tMonitor any throttling that may be ocurring, throttling will return a result code of **429** which indicates that too many API calls are being made within the time span allowed. This can be address by pausing processes or including multiple accounts (App Registrations/Service Accounts).\r\n\r\n"
+      },
+      "name": "text - 2"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## More Info on Power Platform Monitoring with App Insights\r\nThe documentation below provides additional details on monitoring Power Platform using Application Insights.\r\n\r\n- [What data is available for model-driven apps?](https://learn.microsoft.com/en-us/power-platform/admin/telemetry-events-model-driven-apps)\r\n- [Telemetry events for Microsoft Dataverse](https://learn.microsoft.com/en-us/power-platform/admin/telemetry-events-dataverse)\r\n\r\n-----\r\n### Average Duration by day\r\nThe time chart below shows the average duration for a page load excluding the initial boot on a daily basis. This chart provides a baseline to assist in determining the duration to begin triggering on.\r\n\r\n```\r\npageViews\r\n| where customDimensions.isBoot == false\r\n| summarize AvgDuration = avg(duration) by bin(timestamp,1d)\r\n```\r\n\r\n\r\n"
+      },
+      "name": "text - 3"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "pageViews\r\n| where customDimensions.isBoot == false\r\n| summarize AvgDuration = avg(duration) by bin(timestamp,1d)\r\n",
+        "size": 0,
+        "title": "Average Duration by day (boot not included)",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+        ],
+        "visualization": "timechart"
+      },
+      "name": "Average Duration by day (boot not included)"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "---\r\n### Average Dependency Duration by day\r\nThe time chart below shows the average duration of all Dependencies on a daily basis."
+      },
+      "name": "text - 7"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "dependencies\r\n| summarize AvgDuration = avg(duration) by bin(timestamp,1d)\r\n",
+        "size": 0,
+        "title": "Average Dependcy Load by Day",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+        ],
+        "visualization": "timechart"
+      },
+      "name": "Average Dependcy Load by Day"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "dependencies\r\n| where type == 'Plugin'\r\n| summarize AvgDuration = avg(duration) by type\r\n| order by AvgDuration desc\r\n",
+        "size": 4,
+        "title": "Average Plugin Duration",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+        ],
+        "visualization": "table"
+      },
+      "name": "Average Plugin Duration"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "---\r\n### Count of Throttled requested by day\r\nThis table shows the count of throttling requests on a daily basis. \r\n\r\n[Service protection API limits](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/api-limits?tabs=sdk)\r\n\r\n```\r\nrequests\r\n| where resultCode == 429\r\n| where success == false\r\n| summarize MaxThrottling = count() by bin(timestamp,1d)\r\n| project format_datetime(timestamp,'yy-MM-dd'),MaxThrottling\r\n| order by timestamp asc\r\n```\r\n"
+      },
+      "name": "text - 4"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "requests\r\n| where resultCode == 429\r\n| where success == false\r\n| summarize MaxThrottling = count() by bin(timestamp,1d)\r\n| project format_datetime(timestamp,'yy-MM-dd'),MaxThrottling\r\n| order by timestamp asc",
+        "size": 4,
+        "aggregation": 2,
+        "title": "Throttling with 429 Result Code",
+        "timeContext": {
+          "durationMs": 2592000000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components",
+        "crossComponentResources": [
+          "/subscriptions/c0eb1fa5-dd86-490c-bd98-217a85aaa1c9/resourceGroups/EIS-PROD-INT-EAST-UDO-RG/providers/microsoft.insights/components/va-eis-udo-prod-east-appi"
+        ],
+        "visualization": "table",
+        "graphSettings": {
+          "type": 0
+        },
+        "chartSettings": {
+          "xAxis": "timestamp",
+          "showLegend": true,
+          "xSettings": {
+            "min": 0,
+            "max": 200
+          }
+        }
+      },
+      "name": "Throttling with 429 Result Code"
+    }
+  ],
+  "fallbackResourceIds": [
+    "azure monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
